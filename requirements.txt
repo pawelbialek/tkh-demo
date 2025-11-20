@@ -39,7 +39,3 @@ typing_extensions==4.15.0
 urllib3==2.5.0
 w3lib==2.3.1
 zope.interface==8.1.1
-
-# Install Playwright browsers + system dependencies after pip installs everything
---extra-index-url https://nothing.to.see.here  # dummy line to force post-install
-post_install.sh
