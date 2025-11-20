@@ -1,12 +1,8 @@
-# streamlit_app.py
+# streamlit_app.py   ← MUST be this exact name
 import streamlit as st
-from run_spider import run_scrapy_spider
-import time
-import os
 
-st.title("My Scrapy Spider Launcher")
+st.title("My Scrapy Spider Launcher")   # ← this will now appear
 
-if st.button("Run Spider (Pure Python)"):
-    with st.spinner("Spider is running..."):
-        run_spider_blocking()
-    st.success("Done!")
+st.write("If you can see this text, everything is working!")
+
+if st.button("Test button"):
