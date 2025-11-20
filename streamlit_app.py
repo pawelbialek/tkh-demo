@@ -6,3 +6,4 @@ st.title("My Scrapy Spider Launcher")   # ← this will now appear
 st.write("If you can see this text, everything is working!")
 
 if st.button("Test button"):
+    st.success("Button works too!")
