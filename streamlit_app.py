@@ -8,7 +8,7 @@ from scrapy.utils.project import get_project_settings
 os.environ['SCRAPY_SETTINGS_MODULE'] = 'tkh_jobs_playwright/scrapy.cfg'
 
 # Import your spider class directly (this is the most reliable way)
-from tkh_jobs_playwright.spiders.tkh_all_clean import TkhAllSpider
+from tkh_jobs_playwright.tkh_jobs_playwright.spiders.tkh_all_clean import TkhAllSpider
 #                                                ^^^^^^^^^^^^^^^^^^^^
 #                                                Change only if your class name is different
 #                                                (open the file — it's the class that inherits from Spider)
