@@ -1,3 +1,4 @@
+streamlit
 attrs==25.4.0
 Automat==25.4.16
 certifi==2025.11.12
