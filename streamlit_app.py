@@ -26,7 +26,7 @@ if st.button("🚀 Run tkh_all_clean spider", type="primary"):
             # Add any other settings you need from your settings.py
         })
 
-        process.crawl(TkhAllCleanSpider)   # ← pass the CLASS, not the string name
+        process.crawl(TkhAllSpider)   # ← pass the CLASS, not the string name
         process.start()                    # blocks until finished
 
     st.success("✅ Spider finished successfully!")
