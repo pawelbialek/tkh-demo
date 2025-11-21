@@ -1,5 +1,6 @@
 import os
 os.system("playwright install")
+os.system("playwright install-deps")
 
 # streamlit_app.py
 import streamlit as st
