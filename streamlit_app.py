@@ -13,14 +13,13 @@ os.environ['SCRAPY_SETTINGS_MODULE'] = 'tkh_jobs_playwright/scrapy.cfg'
 from tkh_jobs_playwright.tkh_jobs_playwright.spiders.tkh_all_clean import TkhAllSpider  # ← change only if class name differs
 
 def run_spider():
-    """This function runs in a separate process — no reactor conflict"""
     process = CrawlerProcess(settings={
         "FEEDS": {
-            "results.json": {"format": "json", "overwrite": True},
+            "tkh_jobs.csv": {"format": "csv", "overwrite": True},
         },
         "USER_AGENT": "Mozilla/5.0 (compatible; StreamlitBot/1.0)",
-        # Add any other settings you need here
-        # e.g. "DOWNLOAD_HANDLERS": {"http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler", ...}
+        "LOG_LEVEL": "INFO",
+        "LOGSTATS_INTERVAL": 10,
     })
 
     process.crawl(TkhAllSpider)
@@ -29,7 +28,7 @@ def run_spider():
 
 st.title("🕷️ TKH Jobs Spider Launcher")
 
-if st.button("🚀 Run tkh_all_clean spider (this may take 2–10 min)", type="primary"):
+if st.button("🚀 Run tkh jobs spider", type="primary"):
     with st.spinner("Spider is running in background... please wait"):
         # Run spider in separate process → no Twisted conflict
         p = multiprocessing.Process(target=run_spider)
@@ -39,13 +38,13 @@ if st.button("🚀 Run tkh_all_clean spider (this may take 2–10 min)", type="p
     st.success("✅ Spider finished!")
     st.balloons()
 
-    if os.path.exists("results.json"):
-        with open("results.json", "rb") as f:
+    if os.path.exists("tkh_jobs.csv"):
+        with open("tkh_jobs.csv", "rb") as f:
             st.download_button(
-                "📥 Download results.json",
+                "📥 Download tkh_jobs.csv",
                 f,
-                file_name="tkh_jobs_latest.json",
-                mime="application/json"
+                file_name="tkh_jobs.csv",
+                mime="text/csv"
             )
     else:
         st.warning("No results.json was created — check your spider's ITEM_PIPELINES")
