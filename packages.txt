@@ -14,3 +14,10 @@ libasound2
 libpango-1.0-0
 libcairo2
 libxfixes3
+libX11-xcb
+libXcursor
+libgtk-3
+libgdk-3
+libpangocairo-1.0
+libcairo-gobject
+libgdk_pixbuf-2.0
