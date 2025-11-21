@@ -1,6 +1,13 @@
-# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+import streamlit as st
 import subprocess, sys
+
+# ←←← ONE-TIME PLAYWRIGHT BROWSER INSTALL (works 100% on Streamlit Cloud Nov 2025)
+try:
+    import playwright
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "playwright"])
 subprocess.check_call([sys.executable, "-m", "playwright", "install", "--with-deps", "chromium"])
+st.success("Playwright browsers ready!")
 # ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
 
 # streamlit_app.py
