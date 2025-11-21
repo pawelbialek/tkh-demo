@@ -39,6 +39,4 @@ typing_extensions==4.15.0
 urllib3==2.5.0
 w3lib==2.3.1
 zope.interface==8.1.1
-
-https://github.com/microsoft/playwright-python/releases/download/v1.48.0/playwright-1.48.0-py3-none-manylinux1_x86_64.whl; python_version >= "3.8"
---pre --extra-index-url https://download.microsoft.com/playwright/v1.48.0/ -c /dev/null --no-deps playwright install --with-deps
+streamlit
