@@ -40,5 +40,3 @@ urllib3==2.5.0
 w3lib==2.3.1
 zope.interface==8.1.1
 streamlit
-
--r playwright install chromium
