@@ -1,3 +1,8 @@
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+import subprocess, sys
+subprocess.check_call([sys.executable, "-m", "playwright", "install", "--with-deps", "chromium"])
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+
 # streamlit_app.py
 import streamlit as st
 import os
