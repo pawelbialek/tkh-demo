@@ -1,14 +1,15 @@
 import streamlit as st
-import subprocess, sys
+import subprocess
+import sys
 
-# ←←← ONE-TIME PLAYWRIGHT BROWSER INSTALL (works 100% on Streamlit Cloud Nov 2025)
-try:
-    import playwright
-except ImportError:
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "playwright"])
-subprocess.check_call([sys.executable, "-m", "playwright", "install", "--with-deps", "chromium"])
-st.success("Playwright browsers ready!")
-# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+
+# ←←← FINAL WORKING PLAYWRIGHT BROWSER INSTALL FOR STREAMLIT CLOUD (2025) ←←←
+if not os.path.exists(os.path.expanduser("~/playwright_cache")):  # only run once per container
+    st.info("First start after deploy – installing Playwright browsers only (30–60 seconds)...")
+    subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"])
+    # NO --with-deps ! We skip system deps that need root
+    st.success("Browsers installed – your spider will now work!")
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
 
 # streamlit_app.py
 import streamlit as st
