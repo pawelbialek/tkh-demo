@@ -1,15 +1,25 @@
+# streamlit_app.py
 import streamlit as st
+import os
 import subprocess
 import sys
 
-
-# ←←← FINAL WORKING PLAYWRIGHT BROWSER INSTALL FOR STREAMLIT CLOUD (2025) ←←←
-if not os.path.exists(os.path.expanduser("~/playwright_cache")):  # only run once per container
-    st.info("First start after deploy – installing Playwright browsers only (30–60 seconds)...")
-    subprocess.check_call([sys.executable, "-m", "playwright", "install", "chromium"])
-    # NO --with-deps ! We skip system deps that need root
-    st.success("Browsers installed – your spider will now work!")
-# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+# ONE-TIME PLAYWRIGHT CHROMIUM INSTALL — WORKS ON STREAMLIT CLOUD NOV 2025
+browser_path = os.path.expanduser("~/.cache/ms-playwright/chromium-*/chrome-linux/chrome")
+if not os.path.exists(browser_path):
+    with st.spinner("First run after deploy — downloading Chromium browser only (~150 MB, 30–90 seconds)..."):
+        result = subprocess.run([
+            sys.executable, "-m", "playwright", "install", "chromium"
+        ], capture_output=True, text=True)
+        
+        if result.returncode != 0:
+            st.error("Playwright install failed:")
+            st.code(result.stderr)
+            st.stop()
+        else:
+            st.success("Chromium browser installed successfully! Your spider is ready.")
+# ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
 
 # streamlit_app.py
 import streamlit as st
