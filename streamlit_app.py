@@ -5,20 +5,25 @@ import subprocess
 import sys
 
 # ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
-# ONE-TIME PLAYWRIGHT CHROMIUM INSTALL — WORKS ON STREAMLIT CLOUD NOV 2025
-browser_path = os.path.expanduser("~/.cache/ms-playwright/chromium-*/chrome-linux/chrome")
-if not os.path.exists(browser_path):
-    with st.spinner("First run after deploy — downloading Chromium browser only (~150 MB, 30–90 seconds)..."):
-        result = subprocess.run([
-            sys.executable, "-m", "playwright", "install", "chromium"
-        ], capture_output=True, text=True)
-        
+# FINAL WORKING PLAYWRIGHT SETUP FOR STREAMLIT COMMUNITY CLOUD (Nov 2025)
+# This runs only once per container lifetime — downloads ~150 MB Chromium binary
+chromium_marker = os.path.expanduser("~/.playwright_browser_installed")
+
+if not os.path.exists(chromium_marker):
+    with st.spinner("First launch after deploy — downloading Chromium browser (60–90 seconds, happens only once)..."):
+        result = subprocess.run(
+            [sys.executable, "-m", "playwright", "install", "chromium"],
+            capture_output=True,
+            text=True
+        )
         if result.returncode != 0:
-            st.error("Playwright install failed:")
+            st.error("Failed to install Chromium browser:")
             st.code(result.stderr)
             st.stop()
         else:
-            st.success("Chromium browser installed successfully! Your spider is ready.")
+            # Create marker file so it never runs again
+            open(chromium_marker, "w").close()
+            st.success("✓ Chromium browser installed — your Playwright spider is ready!")
 # ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
 
 # streamlit_app.py
