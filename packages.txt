@@ -20,4 +20,4 @@ libgtk-3
 libgdk-3
 libpangocairo-1.0
 libcairo-gobject
-libgdk_pixbuf-2.0
+libgdk-pixbuf-2.0-0
