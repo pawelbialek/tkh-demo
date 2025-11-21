@@ -12,7 +12,6 @@ chromium_marker = os.path.expanduser("~/.playwright_browser_installed")
 if not os.path.exists(chromium_marker):
     with st.spinner("First launch after deploy — downloading Chromium browser (60–90 seconds, happens only once)..."):
         result = subprocess.run(
-            [sys.executable, "-m", "playwright", "install", "chromium"],
             [sys.executable, "-m", "playwright", "install-deps", "chromium"],
             capture_output=True,
             text=True
