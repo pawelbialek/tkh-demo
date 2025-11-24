@@ -1,4 +1,3 @@
-# tkh_jobs_playwright/spiders/tkh_all.py
 
 import scrapy
 from scrapy_playwright.page import PageMethod
